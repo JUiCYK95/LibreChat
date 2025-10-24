@@ -85,8 +85,48 @@ module.exports = {
           800: '#06373e',
           900: '#031f29',
         },
-        'brand-purple': 'var(--brand-purple)',
-        presentation: 'var(--presentation)',
+        // Nexus Automotive Brand Colors
+        'nexus-blue': {
+          50: '#eff6ff',
+          100: '#dbeafe',
+          200: '#bfdbfe',
+          300: '#93c5fd',
+          400: '#60a5fa',
+          500: '#3b82f6',
+          600: '#2563eb', // Primary Blue
+          700: '#1e40af', // Dark Blue
+          800: '#1e3a8a',
+          900: '#1e293b',
+        },
+        'nexus-cyan': {
+          50: '#ecfeff',
+          100: '#cffafe',
+          200: '#a5f3fc',
+          300: '#67e8f9',
+          400: '#22d3ee',
+          500: '#06b6d4', // Primary Cyan
+          600: '#0891b2',
+          700: '#0e7490',
+          800: '#155e75',
+          900: '#164e63',
+        },
+        'nexus-orange': {
+          50: '#fff7ed',
+          100: '#ffedd5',
+          200: '#fed7aa',
+          300: '#fdba74',
+          400: '#fb923c',
+          500: '#f97316', // Primary Orange
+          600: '#ea580c',
+          700: '#c2410c',
+          800: '#9a3412',
+          900: '#7c2d12',
+        },
+        'brand-purple': '#ab68ff',
+        'brand-primary': '#2563eb', // Nexus Blue
+        'brand-secondary': '#06b6d4', // Nexus Cyan
+        'brand-accent': '#f97316', // Nexus Orange
+        'presentation': 'var(--presentation)',
         'text-primary': 'var(--text-primary)',
         'text-secondary': 'var(--text-secondary)',
         'text-secondary-alt': 'var(--text-secondary-alt)',

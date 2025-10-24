@@ -1,7 +1,7 @@
 {
-  "name": "LibreChat",
+  "name": "nexus-automotive-chat",
   "version": "v0.8.0",
-  "description": "",
+  "description": "Nexus Automotive - AI Chat Platform für strategische Unternehmensberatung im Automobilsektor",
   "workspaces": [
     "api",
     "client",
@@ -88,12 +88,12 @@
     "type": "git",
     "url": "git+https://github.com/danny-avila/LibreChat.git"
   },
-  "author": "",
+  "author": "David HR Europa GmbH",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/danny-avila/LibreChat/issues"
   },
-  "homepage": "https://librechat.ai/",
+  "homepage": "https://david-hr-europa.de/",
   "devDependencies": {
     "@axe-core/playwright": "^4.10.1",
     "@eslint/compat": "^1.2.6",

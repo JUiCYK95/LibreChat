@@ -1,10 +1,14 @@
 <p align="center">
-  <a href="https://librechat.ai">
+  <a href="https://david-hr-europa.de">
     <img src="client/public/assets/logo.svg" height="256">
   </a>
   <h1 align="center">
-    <a href="https://librechat.ai">LibreChat</a>
+    <a href="https://david-hr-europa.de">Nexus Automotive</a>
   </h1>
+  <p align="center">
+    <strong>David HR Europa GmbH</strong><br>
+    Strategische Unternehmensberatung für Autohäuser im DACH-Raum
+  </p>
 </p>
 
 <p align="center">

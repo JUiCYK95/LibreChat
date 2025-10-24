@@ -1,3 +1,7 @@
+# Nexus Automotive - AI Chat Configuration
+# David HR Europa GmbH
+# Strategische Unternehmensberatung für Autohäuser im DACH-Raum
+#
 # For more information, see the Configuration Guide:
 # https://www.librechat.ai/docs/configuration/librechat_yaml
 
@@ -27,22 +31,23 @@ cache: true
 
 # Custom interface configuration
 interface:
-  customWelcome: 'Welcome to LibreChat! Enjoy your experience.'
+  customWelcome: "Willkommen bei Nexus Automotive! Ihr KI-Assistent für strategische Unternehmensberatung."
+  appTitle: "Nexus Automotive"
   # Enable/disable file search as a chatarea selection (default: true)
   # Note: This setting does not disable the Agents File Search Capability.
   # To disable the Agents Capability, see the Agents Endpoint configuration instead.
   fileSearch: true
   # Privacy policy settings
   privacyPolicy:
-    externalUrl: 'https://librechat.ai/privacy-policy'
+    externalUrl: 'https://david-hr-europa.de/datenschutz'
     openNewTab: true
 
   # Terms of service
   termsOfService:
-    externalUrl: 'https://librechat.ai/tos'
+    externalUrl: 'https://david-hr-europa.de/agb'
     openNewTab: true
     modalAcceptance: true
-    modalTitle: 'Terms of Service for LibreChat'
+    modalTitle: "Nutzungsbedingungen - Nexus Automotive"
     modalContent: |
       # Terms and Conditions for LibreChat
 
