@@ -34,17 +34,23 @@ RUN \
     npm config set fetch-retry-maxtimeout 600000 ; \
     npm config set fetch-retries 5 ; \
     npm config set fetch-retry-mintimeout 15000 ; \
-    npm ci --no-audit --legacy-peer-deps ; \
-    # Install rollup's Alpine Linux (musl) native bindings immediately after npm ci
-    npm install @rollup/rollup-linux-x64-musl --save-optional --legacy-peer-deps --force
+    npm ci --no-audit --legacy-peer-deps
 
 COPY --chown=node:node . .
 
 RUN \
     # Install peer dependencies explicitly (needed because of --legacy-peer-deps)
     npm install --legacy-peer-deps mongoose jsonwebtoken winston winston-daily-rotate-file nanoid lodash klona meilisearch; \
+    # Manually install rollup Alpine Linux native bindings into the rollup package
+    # This works around npm's bug with optional dependencies on Alpine
+    ROLLUP_VERSION=$(node -p "require('./node_modules/rollup/package.json').version") && \
+    wget -q https://registry.npmjs.org/@rollup/rollup-linux-x64-musl/-/rollup-linux-x64-musl-${ROLLUP_VERSION}.tgz && \
+    mkdir -p node_modules/@rollup/rollup-linux-x64-musl && \
+    tar -xzf rollup-linux-x64-musl-${ROLLUP_VERSION}.tgz -C node_modules/@rollup/rollup-linux-x64-musl --strip-components=1 && \
+    rm rollup-linux-x64-musl-${ROLLUP_VERSION}.tgz; \
     # Verify rollup bindings are installed
     ls -la node_modules/@rollup/ || echo "ERROR: rollup bindings not found"; \
+    ls -la node_modules/@rollup/rollup-linux-x64-musl/ || echo "ERROR: rollup-linux-x64-musl not found"; \
     # Build packages first (data-schemas, data-provider, api, client-package)
     npm run build:packages; \
     # React client build (only build client, packages already built)
