@@ -43,7 +43,7 @@ RUN \
     npm run build:packages; \
     # React client build
     NODE_OPTIONS="--max-old-space-size=2048" npm run frontend; \
-    npm prune --production; \
+    # Note: Skipping npm prune to preserve workspace packages
     npm cache clean --force
 
 # Node API setup
