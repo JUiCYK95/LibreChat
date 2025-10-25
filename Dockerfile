@@ -39,10 +39,14 @@ RUN \
 COPY --chown=node:node . .
 
 RUN \
-    # Build packages first (data-schemas, data-provider, api)
+    # Build packages first (data-schemas, data-provider, api, client-package)
     npm run build:packages; \
-    # React client build
-    NODE_OPTIONS="--max-old-space-size=2048" npm run frontend; \
+    # React client build (only build client, packages already built)
+    NODE_OPTIONS="--max-old-space-size=2048" npm run build:client; \
+    # Verify packages were built correctly
+    ls -la packages/data-schemas/dist || echo "ERROR: data-schemas dist not found"; \
+    ls -la packages/data-provider/dist || echo "ERROR: data-provider dist not found"; \
+    ls -la packages/api/dist || echo "ERROR: api dist not found"; \
     # Note: Skipping npm prune to preserve workspace packages
     npm cache clean --force
 
