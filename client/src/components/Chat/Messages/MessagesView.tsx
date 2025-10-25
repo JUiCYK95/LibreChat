@@ -38,7 +38,7 @@ function MessagesViewContent({
       <div className="relative flex-1 overflow-hidden overflow-y-auto">
         <div className="relative h-full">
           <div
-            className="scrollbar-gutter-stable"
+            className="scrollbar-gutter-stable relative"
             onScroll={debouncedHandleScroll}
             ref={scrollableRef}
             style={{
@@ -47,7 +47,20 @@ function MessagesViewContent({
               width: '100%',
             }}
           >
-            <div className="flex flex-col pb-9 dark:bg-transparent">
+            {/* EU Logo Watermark */}
+            <div
+              className="pointer-events-none fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-0"
+              style={{
+                backgroundImage: 'url(/assets/logo.png)',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
+                backgroundSize: 'contain',
+                width: '40%',
+                height: '40%',
+                opacity: 0.05,
+              }}
+            />
+            <div className="relative z-10 flex flex-col pb-9 dark:bg-transparent">
               {(_messagesTree && _messagesTree.length == 0) || _messagesTree === null ? (
                 <div
                   className={cn(
