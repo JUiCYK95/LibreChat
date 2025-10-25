@@ -42,6 +42,8 @@ RUN \
 COPY --chown=node:node . .
 
 RUN \
+    # Install peer dependencies explicitly (needed because of --legacy-peer-deps)
+    npm install --legacy-peer-deps mongoose jsonwebtoken winston winston-daily-rotate-file nanoid lodash klona meilisearch; \
     # Build packages first (data-schemas, data-provider, api, client-package)
     npm run build:packages; \
     # React client build (only build client, packages already built)
