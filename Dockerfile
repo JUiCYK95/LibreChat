@@ -34,16 +34,17 @@ RUN \
     npm config set fetch-retry-maxtimeout 600000 ; \
     npm config set fetch-retries 5 ; \
     npm config set fetch-retry-mintimeout 15000 ; \
-    npm ci --no-audit --legacy-peer-deps
+    npm ci --no-audit --legacy-peer-deps ; \
+    # Install rollup's Alpine Linux (musl) native bindings immediately after npm ci
+    npm install @rollup/rollup-linux-x64-musl --save-optional --legacy-peer-deps --force
 
 COPY --chown=node:node . .
 
 RUN \
-    # Install rollup's Alpine Linux (musl) native bindings
-    # This must be done before building packages that use rollup
-    npm install @rollup/rollup-linux-x64-musl --save-optional --no-save --legacy-peer-deps; \
     # Install peer dependencies explicitly (needed because of --legacy-peer-deps)
     npm install --legacy-peer-deps mongoose jsonwebtoken winston winston-daily-rotate-file nanoid lodash klona meilisearch; \
+    # Verify rollup bindings are installed
+    ls -la node_modules/@rollup/ || echo "ERROR: rollup bindings not found"; \
     # Build packages first (data-schemas, data-provider, api, client-package)
     npm run build:packages; \
     # React client build (only build client, packages already built)
