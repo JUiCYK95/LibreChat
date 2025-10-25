@@ -37,7 +37,7 @@ RUN \
     npm ci --no-audit --legacy-peer-deps ; \
     # Explicitly install rollup's Alpine Linux (musl) native bindings
     # This fixes the optional dependency installation issue with --legacy-peer-deps
-    npm install --save-optional @rollup/rollup-linux-x64-musl
+    npm install --save-optional @rollup/rollup-linux-x64-musl --legacy-peer-deps
 
 COPY --chown=node:node . .
 
