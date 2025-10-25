@@ -34,7 +34,10 @@ RUN \
     npm config set fetch-retry-maxtimeout 600000 ; \
     npm config set fetch-retries 5 ; \
     npm config set fetch-retry-mintimeout 15000 ; \
-    npm ci --no-audit --legacy-peer-deps
+    npm ci --no-audit --legacy-peer-deps ; \
+    # Explicitly install rollup's Alpine Linux (musl) native bindings
+    # This fixes the optional dependency installation issue with --legacy-peer-deps
+    npm install --save-optional @rollup/rollup-linux-x64-musl
 
 COPY --chown=node:node . .
 
