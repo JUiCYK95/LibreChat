@@ -48,9 +48,18 @@ RUN \
     mkdir -p node_modules/@rollup/rollup-linux-x64-musl && \
     tar -xzf rollup-linux-x64-musl-${ROLLUP_VERSION}.tgz -C node_modules/@rollup/rollup-linux-x64-musl --strip-components=1 && \
     rm rollup-linux-x64-musl-${ROLLUP_VERSION}.tgz; \
-    # Verify rollup bindings are installed
+    # Manually install sharp Alpine Linux native bindings
+    # This works around npm's bug with optional dependencies on Alpine
+    SHARP_VERSION=$(node -p "require('./node_modules/sharp/package.json').version") && \
+    wget -q https://registry.npmjs.org/@img/sharp-linuxmusl-x64/-/sharp-linuxmusl-x64-${SHARP_VERSION}.tgz && \
+    mkdir -p node_modules/@img/sharp-linuxmusl-x64 && \
+    tar -xzf sharp-linuxmusl-x64-${SHARP_VERSION}.tgz -C node_modules/@img/sharp-linuxmusl-x64 --strip-components=1 && \
+    rm sharp-linuxmusl-x64-${SHARP_VERSION}.tgz; \
+    # Verify bindings are installed
     ls -la node_modules/@rollup/ || echo "ERROR: rollup bindings not found"; \
     ls -la node_modules/@rollup/rollup-linux-x64-musl/ || echo "ERROR: rollup-linux-x64-musl not found"; \
+    ls -la node_modules/@img/ || echo "ERROR: sharp bindings not found"; \
+    ls -la node_modules/@img/sharp-linuxmusl-x64/ || echo "ERROR: sharp-linuxmusl-x64 not found"; \
     # Build packages first (data-schemas, data-provider, api, client-package)
     npm run build:packages; \
     # React client build (only build client, packages already built)
